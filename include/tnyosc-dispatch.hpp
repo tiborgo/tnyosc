@@ -30,10 +30,14 @@
 #ifndef __TNY_OSC_DISPATCH__
 #define __TNY_OSC_DISPATCH__
 
+#if !defined(_WIN32)
+#include <sys/time.h>
+#endif
+
 #include <string>
 #include <vector>
 #include <list>
-#include <tr1/memory>
+#include <memory>
 
 #include <time.h>
 
@@ -94,7 +98,7 @@ struct Callback {
   osc_method method; // matched method to call
 };
 
-typedef std::tr1::shared_ptr<Callback> CallbackRef;
+typedef std::shared_ptr<Callback> CallbackRef;
 // use to sort list<Callback> according to their timetag
 
 class Dispatcher {
